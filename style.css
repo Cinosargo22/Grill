@@ -1,0 +1,9 @@
+:root{
+    --primary: rgb(100, 100, 170);
+    --background: rgb(18, 18, 168);
+  }
+  
+body{
+    background-color: seashell;
+ 
+}
