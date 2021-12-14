@@ -1,6 +1,7 @@
 var searchPanel = $('#search-panel');
 var resultsPanel = $('#results-panel');
 var triviaPanel = $('#trivia-panel');
+var foodButtons = $('.food');
 
 // Edamam api app id and key
 const app_id = 'bb917b29';
@@ -26,3 +27,12 @@ function getQuestions(){
             console.log(data);
         });
 }
+
+foodButtons.click(function(event){
+    if (event.target.classList.contains("secondary")) {
+        $(event.target).removeClass('secondary')
+    } else {
+        $(event.target).addClass('secondary')
+    }
+    
+})
