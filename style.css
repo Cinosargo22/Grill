@@ -62,7 +62,7 @@ body{
 }
 
 .input-group-rounded .input-group-field {
-  border-radius: 5000px 5000px 5000px 5000px;
+  border-radius: 5000px 0px 0px 5000px;
   padding-left: 1rem;
 }
 
