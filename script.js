@@ -1,15 +1,21 @@
 var searchPanel = $('#search-panel');
+var searchButton = $('#search');
 var resultsPanel = $('#results-panel');
 var triviaPanel = $('#trivia-panel');
 var foodButtons = $('.food');
+var selected =[];
+var textInput = $('#searchTerm');
+
 
 // Edamam api app id and key
 const app_id = 'bb917b29';
 const app_key = 'ca9b61b9c9cb28f8e5aeccd56a855a75';
 
-function getRecipes(search){
+function getRecipes(){
 
-    fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=${search}&app_id=${app_id}&app_key=${app_key}`)
+    var search= textInput.val();
+
+    fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=${search}&app_id=${app_id}&app_key=${app_key}&health=${selected.join("&health=")}`)
         .then(function(response){
             return response.json();
         })
@@ -31,8 +37,13 @@ function getQuestions(){
 foodButtons.click(function(event){
     if (event.target.classList.contains("secondary")) {
         $(event.target).removeClass('secondary')
+        selected.push(event.target.value);
     } else {
         $(event.target).addClass('secondary')
+        var removeValue = selected.indexOf(event.target.value);
+        selected.splice(removeValue,1);
     }
     
 })
+
+searchButton.click(getRecipes);
