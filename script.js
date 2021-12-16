@@ -59,6 +59,10 @@ function getQuestions(){
         })
         .then(function (data) {
             console.log(data);
+            var Question = data[0].question
+            console.log (Question);
+            triviaPanel.text(Question);
+
         });
 }
 
