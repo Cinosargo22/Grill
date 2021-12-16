@@ -2,6 +2,7 @@ var searchPanel = $('#search-panel');
 var searchButton = $('#search');
 var resultsPanel = $('#results-panel');
 var triviaPanel = $('#trivia-panel');
+var jeopardyQuestion = $('.jeopardy-question');
 var foodButtons = $('.food');
 var selected = [];
 var textInput = $('#searchTerm');
@@ -52,29 +53,32 @@ function getRecipes() {
         });
 }
 
-function getQuestions(){
+function getQuestion() {
     fetch('https://jservice.io/api/random')
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
-            console.log(data);
+            
             var question = data[0].question;
             var answer = data[0].answer;
-            console.log(question);
-            let template = 
-            ` <h2 class="cell jeopardy-question"> ${question} </h2>`
-            triviaPanel.html(template);
 
-            triviaPanel.click(function() {
+            jeopardyQuestion.html(question);
 
-                let template = 
-                `<h2 class="cell jeopardy-question"> ${answer} </h2>`
-                triviaPanel.html(template);
-                triviaPanel.click(getQuestions);
-            })
+            jeopardyQuestion.data('answer', answer);
 
         });
+}
+
+function jeopardyClick() {
+    let container = $(this).children('.jeopardy-question');
+    if (container.data('answer')) {
+        let answer = container.data('answer');
+        container.html(answer);
+        container.data('answer', ''); // clear out the answer
+    } else {
+        getQuestion();
+    }
 }
 
 foodButtons.click(function(event){
@@ -89,6 +93,6 @@ foodButtons.click(function(event){
     
 })
 
-
 searchButton.click(getRecipes);
-getQuestions();
+triviaPanel.click(jeopardyClick);
+getQuestion();

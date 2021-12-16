@@ -2,6 +2,7 @@
     --primary: rgb(100, 100, 170);
     --background: rgb(18, 18, 168);
     --jeopardy: #0077b6;
+    --light: seashell;
   }
 
 html,
@@ -73,16 +74,18 @@ body {
   border-radius: 0 5000px 5000px 0;
   font-size: 0.8rem;
 }
-#results-panel{
-  margin-bottom:10%
+
+#results-panel {
+  margin-bottom: 10rem;
 }
-.side-bar{
+
+.side-bar {
   position: fixed;
 }
-.dive-bar{
+
+.dive-bar {
   background-color: var(--jeopardy);
-  height: 15%;
-  width : 100%;
+  height: 10rem;
   bottom:0;
   right: 0;
   left: 0;
@@ -92,6 +95,7 @@ body {
 
 .jeopardy-question {
   font-size: 2.5ch;
+  color: var(--light);
 }
 
 .dive-bar::-webkit-scrollbar {
@@ -106,8 +110,8 @@ body {
   background-color: darkgrey;
 }
 
-@media screen and (min-width:750px) {
+@media screen and (max-width:750px) {
   .side-bar {
-    position:relative;
+    position: relative;
   }
 }
