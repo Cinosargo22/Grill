@@ -72,3 +72,17 @@ body {
   border-radius: 0 5000px 5000px 0;
   font-size: 0.8rem;
 }
+#results-panel{
+  margin-bottom:10%
+}
+.side-bar{
+  position: fixed;
+}
+.dive-bar{
+  background-color: blue;
+  height: 10%;
+  width : 100%;
+  bottom:0;
+  position:fixed;
+
+}
