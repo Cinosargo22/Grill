@@ -37,7 +37,7 @@ function getRecipes() {
             let recipes = data.hits;
             for (var i = 0; i < recipes.length; i++) {
                 let recipe = recipes[i].recipe;
-                let template = '' + 
+                let template = 
                     `<div class="card cell medium-4" style="width: 300px;">
                         <div class="card-divider"><a href="${recipe.url}" target="_blank">${recipe.label}</a></div>
                         <img src="${recipe.image}" alt="${recipe.label}" SameSite="Lax">
@@ -59,9 +59,20 @@ function getQuestions(){
         })
         .then(function (data) {
             console.log(data);
-            var Question = data[0].question
-            console.log (Question);
-            triviaPanel.text(Question);
+            var question = data[0].question;
+            var answer = data[0].answer;
+            console.log(question);
+            let template = 
+            ` <h2 class="cell jeopardy-question"> ${question} </h2>`
+            triviaPanel.html(template);
+
+            triviaPanel.click(function() {
+
+                let template = 
+                `<h2 class="cell jeopardy-question"> ${answer} </h2>`
+                triviaPanel.html(template);
+                triviaPanel.click(getQuestions);
+            })
 
         });
 }
