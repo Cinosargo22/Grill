@@ -74,4 +74,6 @@ foodButtons.click(function(event){
     
 })
 
+
 searchButton.click(getRecipes);
+getQuestions();
