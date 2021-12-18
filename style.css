@@ -110,8 +110,42 @@ body {
   background-color: darkgrey;
 }
 
+
+
+
+
+
+
+
 @media screen and (max-width:750px) {
   .side-bar {
     position: relative;
+  }
+
+  /*============================== Hamburger Menu ============================*/
+  /* Style Hamburger*/
+  .bar1, .bar3 {
+    display: inline-block;
+    width: 35px;
+    height: 5px;
+    background-color: #333;
+    margin: 6px 0;
+    transition: 0.4s;
+  }
+  .bar2{
+    cursor: pointer;
+    vertical-align: middle;
+    width: 35px;
+    height: 5px;
+    background-color: #333;
+    font-size: 1.2em;
+    margin-top: -8px;
+    margin-bottom: 0px;
+    transition: 0.4s;
+  }
+
+  /*========= Mobile Menu ==================*/
+  .menu-hidden{
+    display: none;
   }
 }

@@ -14,7 +14,7 @@
 
 <body class="grid-x grid-padding-x grid-margin-y">
     <section class="medium-4 large-3 cell">
-        <div class="side-bar">
+        <!-- <div class="side-bar">
             <div id="search-panel" class="container grid-y grid-padding-y">
                 <button class="food button button-rounded-hover secondary" data-key="health" value="vegan"> Vegan </button>
 
@@ -37,11 +37,42 @@
                     </div>
                 </div>
             </div>
+        </div> -->
+        <div class="side-bar">
+            <div class="container center " onclick="myFunction(this)" >
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+            <div class="menu-hidden mobile-menu">
+                <div id="search-panel" class="container grid-y grid-padding-y" >
+                    <button class="food button button-rounded-hover secondary" data-key="health" value="vegan"> Vegan </button>
+
+                    <button class="food button button-rounded-hover secondary" data-key="diet" value="low-fat"> Low Fat </button>
+
+                    <button class="food button button-rounded-hover secondary" data-key="health" value="gluten-free"> Gluten Free </button>
+
+                    <button class="food button button-rounded-hover secondary" data-key="health" value="vegetarian"> Vegetarian </button>
+
+                    <button class="food button button-rounded-hover secondary" data-key="health" value="peanut-free"> Peanut Free </button>
+
+                    <button class="food button button-rounded-hover secondary" data-key="diet" value="low-sodium"> Low Sodium </button>
+
+                    <button class="food button button-rounded-hover secondary" data-key="health" value="pescatarian"> Pescatarian </button>
+
+                    <div class="input-group input-group-rounded">
+                        <input class="input-group-field" type="search" id="searchTerm">
+                        <div class="input-group-button">
+                            <input type="submit" class="button secondary" value="Search" id="search">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     <section class="cell auto">
         
-        <div id="results-panel" class="grid-container-fluid grid-x grid-padding-x grid-padding-y grid-margin-x">
+        <div id="results-panel" class="grid-container-fluid grid-x grid-padding-x grid-padding-y grid-margin-x align-right">
             <!-- Results go here -->
         </div>
         <div id="trivia-panel" class="container dive-bar grid-x align-middle text-center ">
