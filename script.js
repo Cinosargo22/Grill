@@ -104,6 +104,12 @@ foodButtons.click(function(event){
     
 })
 
+function myFunction(x) {
+    x.classList.toggle("change");
+    $(".mobile-menu").toggleClass("menu-hidden", 800, "easeOutQuint");
+    console.log('ah')
+  };
+
 searchButton.click(getRecipes);
 triviaPanel.click(jeopardyClick);
 getQuestion();
