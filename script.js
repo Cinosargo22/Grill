@@ -3,7 +3,10 @@ var searchButton = $('#search');
 var resultsPanel = $('#results-panel');
 var triviaPanel = $('#trivia-panel');
 var foodButtons = $('.food');
-var selected = [];
+var query = {
+    diet: [],
+    health: []
+};
 var textInput = $('#searchTerm');
 
 
@@ -18,9 +21,13 @@ function getRecipes() {
     var url = `https://api.edamam.com/api/recipes/v2?type=public&q=${search}&app_id=${app_id}&app_key=${app_key}`;
 
     // only add the health query string if a selection has been made
-    if (selected.length) {
+    if (query.health.length) {
+        url += `&health=${query.health.join("&health=")}`;
+    }
 
-        url += `&health=${selected.join("&health=")}`;
+    // only add the diet query string if a diet selection has been made
+    if (query.diet.length) {
+        url += `&diet=${query.diet.join("&diet=")}`;
     }
 
     fetch(url)
@@ -33,7 +40,6 @@ function getRecipes() {
         })
         .then(function (data) {
             resultsPanel.empty();
-            console.log(data);
             let recipes = data.hits;
             for (var i = 0; i < recipes.length; i++) {
                 let recipe = recipes[i].recipe;
@@ -63,13 +69,18 @@ function getQuestions(){
 }
 
 foodButtons.click(function(event){
+    let button = $(event.target);
+    let key = button.data('key');
+    let value = button.val();
+
     if (event.target.classList.contains("secondary")) {
-        $(event.target).removeClass('secondary')
-        selected.push(event.target.value);
+        button.removeClass('secondary');
+        query[key].push(value);
     } else {
-        $(event.target).addClass('secondary')
-        var removeValue = selected.indexOf(event.target.value);
-        selected.splice(removeValue,1);
+        button.addClass('secondary')
+
+        let index = query[key].indexOf(value);
+        query[key].splice(index, 1);
     }
     
 })
