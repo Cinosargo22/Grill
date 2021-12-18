@@ -141,4 +141,3 @@ onPageLoad();
 
 searchButton.click(getRecipes);
 triviaPanel.click(jeopardyClick);
-getQuestion();
