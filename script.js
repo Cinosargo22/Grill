@@ -2,6 +2,7 @@ var searchPanel = $('#search-panel');
 var searchButton = $('#search');
 var resultsPanel = $('#results-panel');
 var triviaPanel = $('#trivia-panel');
+var jeopardyQuestion = $('.jeopardy-question');
 var foodButtons = $('.food');
 var query = {
     diet: [],
@@ -43,7 +44,7 @@ function getRecipes() {
             let recipes = data.hits;
             for (var i = 0; i < recipes.length; i++) {
                 let recipe = recipes[i].recipe;
-                let template = '' + 
+                let template = 
                     `<div class="card cell medium-4" style="width: 300px;">
                         <div class="card-divider"><a href="${recipe.url}" target="_blank">${recipe.label}</a></div>
                         <img src="${recipe.image}" alt="${recipe.label}" SameSite="Lax">
@@ -58,14 +59,32 @@ function getRecipes() {
         });
 }
 
-function getQuestions(){
+function getQuestion() {
     fetch('https://jservice.io/api/random')
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
-            console.log(data);
+            
+            var question = data[0].question;
+            var answer = data[0].answer;
+
+            jeopardyQuestion.html(question);
+
+            jeopardyQuestion.data('answer', answer);
+
         });
+}
+
+function jeopardyClick() {
+    let container = $(this).children('.jeopardy-question');
+    if (container.data('answer')) {
+        let answer = container.data('answer');
+        container.html(answer);
+        container.data('answer', ''); // clear out the answer
+    } else {
+        getQuestion();
+    }
 }
 
 foodButtons.click(function(event){
@@ -85,6 +104,6 @@ foodButtons.click(function(event){
     
 })
 
-
 searchButton.click(getRecipes);
-getQuestions();
+triviaPanel.click(jeopardyClick);
+getQuestion();
