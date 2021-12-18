@@ -15,6 +15,30 @@ var textInput = $('#searchTerm');
 const app_id = 'bb917b29';
 const app_key = 'ca9b61b9c9cb28f8e5aeccd56a855a75';
 
+function onPageLoad() {
+    var savedSearch = localStorage.getItem('query');
+
+    if (!savedSearch) {
+        return;
+    }
+
+    // Update the global variable and matching button styles
+    query = JSON.parse(savedSearch);
+    console.log(query);
+
+    // looping over the categories (health, or diet) in query
+    for (var key in query) { 
+        var thisCategory = query[key];
+
+        // looping over the selected options within the categories (low-fat, vegan, etc.)
+        for (var i = 0; i < thisCategory.length; i++) { 
+            var thisOption = thisCategory[i];
+            // remove the "secondary" class to show it's selected
+            $(`[value=${thisOption}]`).removeClass('secondary');
+        }
+    }
+}
+
 function getRecipes() {
 
     var search = textInput.val();
@@ -102,7 +126,12 @@ foodButtons.click(function(event){
         query[key].splice(index, 1);
     }
     
+    // Add to localStorage here
+    localStorage.setItem('query', JSON.stringify(query));
+
 })
+
+onPageLoad();
 
 searchButton.click(getRecipes);
 triviaPanel.click(jeopardyClick);
