@@ -77,10 +77,12 @@ body {
 
 #results-panel {
   margin-bottom: 10rem;
+  margin-top: 7rem;
 }
 
 .side-bar {
   position: fixed;
+  margin-top: 7rem;
 }
 
 .dive-bar {
@@ -93,6 +95,20 @@ body {
   overflow: auto;
 }
 
+.fly-bar {
+  background-color: var(--jeopardy);
+  height: 6rem;
+  top:0;
+  right: 0;
+  left: 0;
+  position: fixed;
+  overflow: auto;
+}
+.fly-bar h2{
+  text-align: center;
+  color:var(--light);
+  font-weight: bold;
+}
 .jeopardy-question {
   font-size: 2.5ch;
   color: var(--light);
