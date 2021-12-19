@@ -40,6 +40,8 @@ function onPageLoad() {
 }
 
 function getRecipes() {
+    var startImg = document.getElementById("homePage");
+    startImg.style.display = "none";
 
     var search = textInput.val();
 

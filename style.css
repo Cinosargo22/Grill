@@ -112,6 +112,16 @@ body {
   letter-spacing: 2px;
 }
 
+.homePage{
+  position: absolute;
+  margin: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.homePage img{
+  width: 300px;
+}
 .fly-bar h1 span{
   font-weight:bolder;
 }
@@ -134,7 +144,11 @@ body {
 
 
 
-
+@media screen and (max-width:1035px) {
+  .homePage{
+    transform: translate(-10%, -50%);
+  }
+}
 
 
 
@@ -142,6 +156,9 @@ body {
 @media screen and (max-width:750px) {
   .side-bar {
     position: relative;
+  }
+  .homePage{
+    transform: translate(-50%, -50%);
   }
 
   /*============================== Hamburger Menu ============================*/
