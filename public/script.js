@@ -10,11 +10,6 @@ var query = {
 };
 var textInput = $('#searchTerm');
 
-
-// Edamam api app id and key
-const app_id = 'bb917b29';
-const app_key = 'ca9b61b9c9cb28f8e5aeccd56a855a75';
-
 function onPageLoad() {
     var savedSearch = localStorage.getItem('query');
 
@@ -45,7 +40,7 @@ function getRecipes() {
 
     var search = textInput.val();
 
-    var url = `/api?type=public&q=${search}`;
+    var url = `/search?type=public&q=${search}`;
 
     // only add the health query string if a selection has been made
     if (query.health.length) {

@@ -19,8 +19,8 @@ app.use(express.static('public'));
 const addApiKeys = (proxyReq, req, res) => {
     proxyReq.path += `&app_id=${app_id}&app_key=${app_key}`;
 };
-var apiProxy = createProxyMiddleware('/api', {
-    target: 'http://api.edamam.com/api/recipes/v2',
+var apiProxy = createProxyMiddleware('/search', {
+    target: 'https://api.edamam.com/api/recipes/v2',
     onProxyReq: addApiKeys
 });
 app.use(apiProxy)
