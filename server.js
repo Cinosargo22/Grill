@@ -21,6 +21,7 @@ const addApiKeys = (proxyReq, req, res) => {
 };
 var apiProxy = createProxyMiddleware('/search', {
     target: 'api.edamam.com/api/recipes/v2',
+    changeOrigin: true,
     onProxyReq: addApiKeys
 });
 app.use(apiProxy)
