@@ -27,11 +27,11 @@ function onPageLoad() {
     console.log(query);
 
     // looping over the categories (health, or diet) in query
-    for (var key in query) { 
+    for (var key in query) {
         var thisCategory = query[key];
 
         // looping over the selected options within the categories (low-fat, vegan, etc.)
-        for (var i = 0; i < thisCategory.length; i++) { 
+        for (var i = 0; i < thisCategory.length; i++) {
             var thisOption = thisCategory[i];
             // remove the "secondary" class to show it's selected
             $(`[value=${thisOption}]`).removeClass('secondary');
@@ -45,7 +45,7 @@ function getRecipes() {
 
     var search = textInput.val();
 
-    var url = `https://api.edamam.com/api/recipes/v2?type=public&q=${search}&app_id=${app_id}&app_key=${app_key}`;
+    var url = `/api?type=public&q=${search}`;
 
     // only add the health query string if a selection has been made
     if (query.health.length) {
@@ -70,7 +70,7 @@ function getRecipes() {
             let recipes = data.hits;
             for (var i = 0; i < recipes.length; i++) {
                 let recipe = recipes[i].recipe;
-                let template = 
+                let template =
                     `<div class="card cell medium-4" style="width: 300px;">
                         <div class="card-divider"><a href="${recipe.url}" target="_blank">${recipe.label}</a></div>
                         <img src="${recipe.image}" alt="${recipe.label}" SameSite="Lax">
@@ -91,7 +91,7 @@ function getQuestion() {
             return response.json();
         })
         .then(function (data) {
-            
+
             var question = data[0].question;
             var answer = data[0].answer;
 
@@ -113,7 +113,7 @@ function jeopardyClick() {
     }
 }
 
-foodButtons.click(function(event){
+foodButtons.click(function (event) {
     let button = $(event.target);
     let key = button.data('key');
     let value = button.val();
@@ -127,7 +127,7 @@ foodButtons.click(function(event){
         let index = query[key].indexOf(value);
         query[key].splice(index, 1);
     }
-    
+
     // Add to localStorage here
     localStorage.setItem('query', JSON.stringify(query));
 
@@ -137,8 +137,8 @@ function myFunction(x) {
     x.classList.toggle("change");
     $(".mobile-menu").toggleClass("menu-hidden", 800, "easeOutQuint");
     console.log('ah')
-  };
-  
+};
+
 onPageLoad();
 
 searchButton.click(getRecipes);
