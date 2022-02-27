@@ -18,9 +18,13 @@ app.use(express.static('public'));
 // adds the app_id and app_key query params to the url
 const addApiKeys = (proxyReq, req, res) => {
     proxyReq.path += `&app_id=${app_id}&app_key=${app_key}`;
+    console.log(proxyReq.path);
 };
 var apiProxy = createProxyMiddleware('/search', {
-    target: 'api.edamam.com/api/recipes/v2',
+    target: 'https://api.edamam.com/api/recipes/v2',
+    pathRewrite: {
+        '^/search': '/'
+    },
     changeOrigin: true,
     onProxyReq: addApiKeys
 });
